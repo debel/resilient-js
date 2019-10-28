@@ -1,12 +1,8 @@
-// Import React
 import React from 'react';
 
-// Import Spectacle Core tags
 import {
   BlockQuote,
   Cite,
-  Deck,
-  Heading,
   ListItem,
   List,
   Quote,
@@ -14,82 +10,95 @@ import {
   Text,
 } from 'spectacle';
 
-// Import theme
-import createTheme from 'spectacle/lib/themes/default';
+import {
+  ThemedDeck,
+  Title,
+} from './utils';
 
-// Require CSS
-require('normalize.css');
-
-const theme = createTheme(
-  {
-    primary: 'white',
-    secondary: '#1F2022',
-    tertiary: '#03A9FC',
-    quaternary: '#CECECE',
-  },
-  {
-    primary: 'Montserrat',
-    secondary: 'Helvetica',
-  }
+const Presentation = () => (
+  <ThemedDeck>
+    <Slide id="title">
+      <Title>Resilient JavaScript APIs</Title>
+    </Slide>
+    <Slide id="about-me">
+      <Title>Hi, I'm Misho</Title>
+    </Slide>
+    <Slide id="resilience">
+      <Title>Resilience</Title>
+    </Slide>
+    <Slide id="million-way-to-fail">
+      <Slide>
+        <Title>A million ways to fail on the web</Title>
+      </Slide>
+    </Slide>
+    <Slide id="clean-code">
+      <Title>Clean code is resilient code</Title>
+    </Slide>
+    <Slide id="predictability">
+      <Title>Predictability</Title>
+    </Slide>
+    <Slide id="death-before-confusion">
+      <Title>Death before confusion</Title>
+    </Slide>
+    <Slide id="tests">
+      <Title>Tests increase resilience</Title>
+    </Slide>
+    <Slide id="plan-for-failure">
+      <Title>Plan for failure</Title>
+    </Slide>
+    <Slide id="metrics">
+      <Title>Metrics</Title>
+    </Slide>
+    <Slide id="monitoring">
+      <Title>Monitoring</Title>
+    </Slide>
+    <Slide id="alerting">
+      <Title>Alerting</Title>
+    </Slide>
+    <Slide id="healthcheck">
+      <Title>Healthchecks</Title>
+    </Slide>
+    <Slide id="operations">
+      <Title>Operations</Title>
+    </Slide>
+    <Slide id="run-books">
+      <Title>Run books</Title>
+    </Slide>
+    <Slide id="auto-recovery">
+      <Title>Recovery</Title>
+    </Slide>
+    <Slide id="fail-fast">
+      <Title>Fail fast</Title>
+    </Slide>
+    <Slide id="backpressure">
+      <Title>Backpressure</Title>
+    </Slide>
+    <Slide id="blocking-the-thread">
+      <Title>Blocking the thread</Title>
+    </Slide>
+    <Slide id="auto-scaling">
+      <Title>Scaling</Title>
+    </Slide>
+    <Slide id="theory-of-constraints">
+      <Title>Theory of constraints</Title>
+    </Slide>
+    <Slide id="circuit-breaker">
+      <Title>Circuit breaker</Title>
+    </Slide>
+    <Slide id="retry">
+      <Title>Retry</Title>
+    </Slide>
+    <Slide id="fallback">
+      <Title>Fallback</Title>
+    </Slide>
+    <Slide id="cap-theorem">
+      <Title>CAP theorem</Title>
+    </Slide>
+    <Slide id="thank-you">
+      <Title>Thank you!</Title>
+      <Title>Enjoy beer.js</Title>
+    </Slide>
+  </ThemedDeck>
 );
 
-export default class Presentation extends React.Component {
-  render() {
-    return (
-      <Deck
-        transition={['zoom', 'slide']}
-        transitionDuration={500}
-        theme={theme}
-      >
-        <Slide transition={['zoom']} bgColor="primary">
-          <Heading size={1} fit caps lineHeight={1} textColor="secondary">
-            Spectacle Boilerplate
-          </Heading>
-          <Text margin="10px 0 0" textColor="tertiary" size={1} fit bold>
-            open the presentation/index.js file to get started
-          </Text>
-        </Slide>
-        <Slide transition={['fade']} bgColor="tertiary">
-          <Heading size={6} textColor="primary" caps>
-            Typography
-          </Heading>
-          <Heading size={1} textColor="secondary">
-            Heading 1
-          </Heading>
-          <Heading size={2} textColor="secondary">
-            Heading 2
-          </Heading>
-          <Heading size={3} textColor="secondary">
-            Heading 3
-          </Heading>
-          <Heading size={4} textColor="secondary">
-            Heading 4
-          </Heading>
-          <Heading size={5} textColor="secondary">
-            Heading 5
-          </Heading>
-          <Text size={6} textColor="secondary">
-            Standard text
-          </Text>
-        </Slide>
-        <Slide transition={['fade']} bgColor="primary" textColor="tertiary">
-          <Heading size={6} textColor="secondary" caps>
-            Standard List
-          </Heading>
-          <List>
-            <ListItem>Item 1</ListItem>
-            <ListItem>Item 2</ListItem>
-            <ListItem>Item 3</ListItem>
-            <ListItem>Item 4</ListItem>
-          </List>
-        </Slide>
-        <Slide transition={['fade']} bgColor="secondary" textColor="primary">
-          <BlockQuote>
-            <Quote>Example Quote</Quote>
-            <Cite>Author</Cite>
-          </BlockQuote>
-        </Slide>
-      </Deck>
-    );
-  }
-}
+export default Presentation;
