@@ -1,4 +1,9 @@
 pre.prism-code {
-  background: none !important;
+  
   font-size: 1.15em !important;
+}
+
+hr {
+  width: 75%;
+  border: 0.3px solid #FF8A65 !important;
 }

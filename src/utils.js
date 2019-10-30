@@ -3,8 +3,9 @@ import {
   CodePane,
   Deck,
   Heading,
-  List,
-  Slide
+  List as SpectacleList,
+  Slide,
+  Text as SpectacleText,
 } from 'spectacle';
 import createTheme from 'spectacle/lib/themes/default';
 
@@ -29,10 +30,10 @@ const Title = ({ children, secondary, bigger, ...otherProps }) => (
   <Heading {...otherProps} size={bigger ? 1 : 4} textColor={secondary ? "secondary" : "tertiary"}>{children}</Heading>
 );
 
-const CenteredList = ({ children }) => (
-  <List textAlign="center" style={{ listStyle:"none" }}>
+const List = ({ center, children }) => (
+  <SpectacleList textAlign={center ? 'left' : 'center'} style={{ listStyle:"none" }}>
     {children}
-  </List>
+  </SpectacleList>
 );
 
 const CodeSlide = React.forwardRef(({ id, title = "404 Missing Slide", source, comment, ...otherProps }, ref) => (
@@ -42,6 +43,10 @@ const CodeSlide = React.forwardRef(({ id, title = "404 Missing Slide", source, c
     <CodePane textSize={20} lang="js" theme="external" source={source} />
   </Slide>
 ));
+
+const CodeJS = ({ src, lang }) => (
+  <CodePane textSize={20} lang={lang || 'js'} theme="external" source={src} />
+);
 
 const Accent = ({ children }) => (
   <span style={{ color:theme.screen.colors.tertiary }}>
@@ -55,4 +60,10 @@ const ThemedDeck = ({ children }) => (
   </Deck>
 );
 
-export { Accent, CenteredList, CodeSlide, Title, ThemedDeck };
+const Text = ({ children, ...otherProps }) => (
+  <SpectacleText {...otherProps} style={{ color: '#FF8A65' }}>
+    {children}
+  </SpectacleText>
+);
+
+export { Accent, List, CodeSlide, Title, ThemedDeck, Text, CodeJS };
