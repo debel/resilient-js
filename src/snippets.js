@@ -23,8 +23,8 @@ export const healthcheck = (
 export const deepHealthCheck = (
 `api.get('/healthcheck/deep', (req, res) => {
   Promise.all(depenencies.map(dep => dep.callHealthCheck()))
-    .then(allGood => res.status(200).send('API is running, all depenencies as fine'))
-    .catch(problems => res.status(500).send('Some depenencies are failing'));
+    .then(allGood => res.status(200).send('API up, depenencies OK'))
+    .catch(problems => res.status(500).send('Depenencies are failing'));
 })`);
 
 export const backpressureOnLag = (
@@ -47,3 +47,15 @@ export const healthcheckWithLag = (
     res.status(200).send('Event loop lag normal');
   }
 });`);
+
+
+export const circuitBreaker = (
+`const fetchSomeData = (id) =>
+  if (dependencyHealthCheck.isUp === true) {
+    return fetch(\`\${dependencyURL}/\${id}\`);
+  } else if (localCache[id].isValid === true) {
+    return Promise.resolve(localCache[id]);
+  } else {
+    return queueAction(fetchSomeData.bind(id));
+  }
+};`);

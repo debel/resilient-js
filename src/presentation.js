@@ -58,7 +58,7 @@ const Presentation = () => (
       </Slide>
     </Slide>
     <Slide id="clean-code">
-      <Title>Clean code is resilient code</Title>
+      <Title fit>Clean code is (more) resilient code</Title>
       <Image src="images/Uncle_Bob.png" />
     </Slide>
     <Slide id="death-before-confusion">
@@ -71,7 +71,7 @@ const Presentation = () => (
     </Slide>
     <Slide id="plan-for-failure">
       <Title>Plan for failure</Title>
-      <Image width="50%" src="images/plan-for-failure.jpg" />
+      <Image width="50%" src="images/plan-for-failure-2.jpg" />
     </Slide>
     <Slide id="metrics">
       <Title>Metrics</Title>
@@ -128,9 +128,20 @@ const Presentation = () => (
       <Text>Simple solutions can be effective</Text>
       <Image src="images/restart.jpg" />
     </Slide>
+    <Slide id="load-balancing">
+      <Title>Load balancing</Title>
+      <Text>Spread the load over multiple instances</Text>
+      <Image src="images/load-balancer-diagram.png" />
+    </Slide>
     <Slide id="auto-scaling">
       <Title>Scaling</Title>
+      <Text>Allow your application to scale with the load</Text>
       <Image src="images/autoscaling-group.png" />
+    </Slide>
+    <Slide id="gree-blue">
+      <Title>Blue/Green deployment</Title>
+      <Text>Reduce failure from newly introduced bugs</Text>
+      <Image width="70%" src="images/blue-green.png" />
     </Slide>
     <Slide id="caching">
       <Title>Caching</Title>
@@ -196,6 +207,10 @@ const Presentation = () => (
       <Title>Circuit breaker</Title>
       <Image src="images/curcuit-breaker.jpg" />
     </Slide>
+    <Slide id="circuit-breaker-example">
+      <Title>The circuit breaker pattern</Title>
+      <CodeJS src={snippets.circuitBreaker} />
+    </Slide>
     <Slide id="retry">
       <Title>Retry</Title>
       <List>
@@ -213,8 +228,7 @@ const Presentation = () => (
     </Slide>
     <Slide id="thank-you">
       <Title>Thank you!</Title>
-      <Title>Enjoy beer.js</Title>
-      <Image src="images/beerjs.png" />
+      <Text>Questions?</Text>
     </Slide>
   </ThemedDeck>
 );
