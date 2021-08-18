@@ -4,28 +4,39 @@ export const statsd = (
 statsd.timing('request.processing', startTime);
 statsd.gauge('users.active', currentUsers);`);
 
+export const prometeus = (
+`const reqCounter = new prometheus.Counter({ name: 'Requests' });
+reqCounter.inc();
+
+const usersGauge = new prometheus.Gauge({
+  name: 'Active Users'
+});
+usersGauge.set(currentlyActiveUsers);`);
+
 export const bosun = (
 `alert sessions_limit {
   macro = victorOps
   template = generic
-  $current_sessions = max(q("sum:backend.sessions.scur", "5m", ""))
+  $sessions = max(q("sum:backend.sessions.scur", "5m", ""))
   $session_limit = max(q("sum:backend.sessions.slim", "5m", ""))
-  $q = ($current_sessions / $session_limit) * 100
+  $q = ($sessions / $session_limit) * 100
   warn = $q > 80
   crit = $q > 95
 }`);
 
 export const healthcheck = (
-`api.get('/healthcheck/shallow', (req, res) =>
+`api.get('/healthcheck/live', (req, res) =>
   res.status(200).send('API is up and running');
 );`);
 
 export const deepHealthCheck = (
-`api.get('/healthcheck/deep', (req, res) => {
+`api.get('/healthcheck/ready', (req, res) => (
   Promise.all(depenencies.map(dep => dep.callHealthCheck()))
-    .then(allGood => res.status(200).send('API up, depenencies OK'))
-    .catch(problems => res.status(500).send('Depenencies are failing'));
-})`);
+    .then(allGood =>
+      res.status(200).send('API up, depenencies OK'))
+    .catch(problems => 
+      res.status(500).send('Depenencies are failing'));
+))`);
 
 export const backpressureOnLag = (
 `const backpressureOnLag = (threshold, resolution = 250) => {
@@ -50,12 +61,12 @@ export const healthcheckWithLag = (
 
 
 export const circuitBreaker = (
-`const fetchSomeData = (id) =>
-  if (dependencyHealthCheck.isUp === true) {
-    return fetch(\`\${dependencyURL}/\${id}\`);
-  } else if (localCache[id].isValid === true) {
-    return Promise.resolve(localCache[id]);
+`const fetchSomeData = (id) => {
+  if (localCache[id].isValid() === true) {
+    return Promise.resolve(localCache[id].getData());
+  } else if (dependencyHealthCheck.isUp() === true) {
+    return dependency.fetchData(id);
   } else {
-    return queueAction(fetchSomeData.bind(id));
+    return queueActionForLater(fetchSomeData.bind(id));
   }
 };`);

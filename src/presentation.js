@@ -1,12 +1,9 @@
 import React from 'react';
 
 import {
-  BlockQuote,
-  Cite,
   Image,
   Layout,
   ListItem,
-  Quote,
   Slide,
 } from 'spectacle';
 
@@ -23,28 +20,39 @@ import * as snippets from './snippets';
 const Presentation = () => (
   <ThemedDeck>
     <Slide id="title">
-      <Title>Resilient<br/>JavaScript<br/>APIs</Title>
+      <Title className="huge-title">Resilient<br/><span className="text-red">JavaScript</span><br/>APIs</Title>
     </Slide>
     <Slide id="about-me">
       <Title>Hi, I'm Misho</Title>
       <Layout>
         <Image src="images/rick-juggling.gif" />
         <List>
-          <ListItem>Senior Software Engineer @Skyscanner</ListItem>
+          <ListItem>Engineering Manager @SumUp</ListItem>
           <hr/>
           <ListItem>Rick and Morty fan</ListItem>
           <hr/>
-          <ListItem>Board game geek</ListItem>
+          <ListItem>Board Game Geek</ListItem>
           <hr/>
           <ListItem>Juggler</ListItem>
         </List>
       </Layout>
+    </Slide>
+    
+    <Slide id="beach-bugs">
+      <Title>Reality</Title>
+      <Image className="big" src="images/beach-bugs.jpeg" />
     </Slide>
     <Slide id="resilience">
       <Title>Resilience</Title>
       <Text fit>
         being able to withstand or recover quickly from difficult conditions
       </Text>
+    </Slide>
+    <Slide id="million-way-to-fail-meme">
+    <Slide>
+      <Title fit>A million ways to fail on the web</Title>
+      <Image src="images/west-ice.jpeg" />
+    </Slide>
     </Slide>
     <Slide id="million-way-to-fail">
       <Slide>
@@ -57,63 +65,112 @@ const Presentation = () => (
         </List>
       </Slide>
     </Slide>
-    <Slide id="clean-code">
-      <Title fit>Clean code is (more) resilient code</Title>
-      <Image src="images/Uncle_Bob.png" />
+    <Slide id="plan-for-failure">
+      <Title>Plan for failure</Title>
+      <Image className="big" src="images/gilf.jpeg" />
+    </Slide>
+    <Slide id="readable-code">
+      <Title fit>Readable code is (more) resilient code</Title>
+      <Image className="big" src="images/Uncle_Bob.png" />
     </Slide>
     <Slide id="death-before-confusion">
       <Title>Death before confusion</Title>
-      <Image src="images/Crockford.jpg" />
+      <Image className="big" src="images/Crockford.jpg" />
+    </Slide>
+    <Slide id="fail-fast">
+      <Title>Better to fail fast</Title>
+      <Image src="images/broken-image-icon.gif" width="20%" />
+      <Text></Text>
     </Slide>
     <Slide id="tests">
       <Title>Tests increase predictability</Title>
-      <Image width="35%" src="images/testing.png" />
+      <Image className="big" src="images/testing.png" />
     </Slide>
-    <Slide id="plan-for-failure">
-      <Title>Plan for failure</Title>
-      <Image width="50%" src="images/plan-for-failure-2.jpg" />
+    <Slide id="tests-2">
+      <Title>Tests increase predictability</Title>
+      <Image className="big offset-top" src="images/testing.png" />
     </Slide>
-    <Slide id="metrics">
-      <Title>Metrics</Title>
-      <Image src="images/diatlov.jpg" />
-    </Slide>
-    <Slide id="metrics-statsd">
+    
+    <Slide id="metrics-code">
       <Title>Metrics</Title>
       <Text fit>You cannot improve what you cannot measure</Text>
-      <CodeJS src={snippets.statsd} />
+      <CodeJS src={snippets.prometeus} />
     </Slide>
+    <Slide id="metrics-diatlov">
+      <Title>Metrics</Title>
+      <Image className="big" src="images/diatlov.jpg" />
+    </Slide>
+    
     <Slide id="monitoring">
       <Title>Monitoring</Title>
-      <Text fit>Have visibility over the actual performanc of your system</Text>
-      <Image width="70%" src="images/grafana.png" />
+      <Text fit>Have visibility over the actual performance of your system</Text>
+      <Image className="big" src="images/grafana.png" />
     </Slide>
+    <Slide id="monitoring-meme">
+      <Image className="big" src="images/monitoring-wrong.jpeg" />
+    </Slide>
+    <Slide id="monitoring-golden-signals">
+      <Title>Monitoring</Title>
+      <Text>The four golden signals</Text>
+      <Image src="images/golden_signals.webp" />
+    </Slide>
+    <Slide id="monitoring-meme-2">
+      <Image className="big" src="images/monitoring-right.jpeg" />
+    </Slide>
+    
     <Slide id="alerting">
       <Title>Alerting</Title>
       <Text fit>Automate the need to actively monitor data</Text>
       <CodeJS src={snippets.bosun} />
     </Slide>
+    <Slide id="alerting-meme">
+      <Title>Alerting</Title>
+      <Image className="offset-mid" src="images/alerting-doomsday.jpeg" />
+    </Slide>
+    
+    <Slide id="choices-1">
+      <Image src="images/hope-and-pray.jpeg" />
+    </Slide>
+    <Slide id="choices-2">
+      <Image width="90%" src="images/hope-and-pray-turn.jpeg" />
+    </Slide>
+    <Slide id="choices-3">
+      <Image width="75%" src="images/right-thing-drake.jpeg" />
+    </Slide>
+    
     <Slide id="healthcheck">
       <Title>Healthchecks</Title>
       <Text fit>The system should be able to express its own state</Text>
-      <Image width="70%" src="images/healthcheck.png" />
+      <Image className="big" src="images/healthcheck.png" />
     </Slide>
-    <Slide id="simple-healthcheck">
-      <Title>Healthchecks</Title>
+    <Slide id="types-of-healthchecks">
+      <Title>Types of healthchecks</Title>
+      <List>
+        <ListItem>Startup checks</ListItem>
+        <ListItem>Liveness checks</ListItem>
+        <ListItem>Readiness checks</ListItem>
+      </List>
+    </Slide>
+    <Slide id="liveness-healthcheck">
+      <Title>Liveness healthcheck</Title>
+      <Text fit>Is the service accessible? Can it receive traffic?</Text>
       <CodeJS src={snippets.healthcheck} />
     </Slide>
     <Slide id="deep-healthcheck">
-      <Title>Deep healthchecks</Title>
+      <Title>Readiness healthcheck</Title>
+      <Text fit>Is the service operational? Should it receive traffic?</Text>
       <CodeJS src={snippets.deepHealthCheck} />
     </Slide>
+
     <Slide id="operations">
-      <Title>Operations</Title>
-      <Text>Respect the Ops team</Text>
-      <Image src="images/ops-team.jpg" />
+      <Title>Ops team</Title>
+      <Text fit>Respect the people who keep your code running</Text>
+      <Image className="big" src="images/ops-team.jpg" />
     </Slide>
     <Slide id="run-books">
       <Title>Run books</Title>
       <Text fit>Extensive and accurate documentation is critical</Text>
-      <Image src="images/documentation.jpg" />
+      <Image className="big" src="images/documentation.jpg" />
     </Slide>
     <Slide id="incident-learning">
       <Title>Incident learning debriefs</Title>
@@ -123,10 +180,15 @@ const Presentation = () => (
         <ListItem>Reparative, preventative and strategic actions</ListItem>
       </List>
     </Slide>
+    <Slide id="incident-learning-meme">
+      <Title>Incident learning debriefs</Title>
+      <Image className="big" src="images/learn-from-mistakes.jpeg" />
+    </Slide>
+    
     <Slide id="auto-recovery">
       <Title>Recovery</Title>
       <Text>Simple solutions can be effective</Text>
-      <Image src="images/restart.jpg" />
+      <Image className="big" src="images/restart.jpg" />
     </Slide>
     <Slide id="load-balancing">
       <Title>Load balancing</Title>
@@ -168,19 +230,14 @@ const Presentation = () => (
       <Title>Request filtering</Title>
       <Text>Not all requests deserve a response</Text>
       <List>
-        <ListItem>Blacklisting</ListItem>
+        <ListItem>Block-listing</ListItem>
         <ListItem>Bots and scrappers</ListItem>
         <ListItem>Malicious actors</ListItem>
       </List>
     </Slide>
-    <Slide id="fail-fast">
-      <Title>Fail fast</Title>
-      <Image src="images/broken-image-icon.gif" width="20%" />
-      <Text></Text>
-    </Slide>
     <Slide id="backpressure">
       <Title>Backpressure</Title>
-      <Image src="images/backpressure.png" />
+      <Image className="big" src="images/backpressure.png" />
     </Slide>
     <Slide id="event-loop">
       <Title>The event loop</Title>
@@ -199,6 +256,7 @@ const Presentation = () => (
       <Title>Stop blocking the thread</Title>
       <Text>Backpressure cannot help when the service is long blocking operation on the JS thread</Text>
     </Slide>
+    
     <Slide id="being-nice">
       <Title>Be nice to others</Title>
       <Image src="images/please-be-nice.png" />
@@ -226,9 +284,12 @@ const Presentation = () => (
         <ListItem>Queue actions for later</ListItem>
       </List>
     </Slide>
+    
     <Slide id="thank-you">
       <Title>Thank you!</Title>
-      <Text>Questions?</Text>
+      <Text>Enjoy your</Text>
+      <Image src="images/beerjs.png" />
+      <Text textSize="small">[beer.js]</Text>
     </Slide>
   </ThemedDeck>
 );

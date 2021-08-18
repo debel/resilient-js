@@ -1,9 +1,29 @@
 pre.prism-code {
   
-  font-size: 1.15em !important;
+  font-size: 1.25em !important;
 }
 
 hr {
   width: 75%;
   border: 0.3px solid #FF8A65 !important;
+}
+
+img.big {
+  width: 100% !important;
+}
+
+.offset-top {
+  object-position: 0 -590px !important;
+}
+
+.offset-mid {
+  object-position: 0 -100px !important;
+}
+
+.huge-title {
+  font-size: 4em !important;
+}
+
+.text-red {
+  color: #FF8A65 !important;
 }
